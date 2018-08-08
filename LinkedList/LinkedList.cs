@@ -55,7 +55,61 @@ namespace LinkedList
             Console.WriteLine();
         }
 
+        public bool RemoveAt(int index)
+        {
 
+            if (Head == null)
+            {
+                return false;
+            }
+            else
+            {
+                var temp1 = Head;
+                for (int i = 0; i<index-2; i++)
+                {
+                    temp1 = temp1.Next;
+                    Node temp2 = temp1.Next;
+                    temp1.Next = temp2.Next;
+                }
+                return true;
+            }
+        }
+
+        public void PrintReverse()
+        {
+            PrintReverse();
+        }
+
+        public bool InsertAt(int index, Object o)
+        {
+            if (Head == null)
+            {
+                return false;
+            }
+            else
+            {
+                Current = Head;
+                var temp1 = Head;
+                if (index > 0 && index <= Count + 1)
+                {
+                    int x = 0;
+                    while (Current != null)
+                    {
+                        if (x == index)
+                        {
+                            temp1 = Current;
+                            Current = new Node();
+                            Current.Next = temp1;
+                        }
+                        else
+                        {
+                            Current = Current.Next;
+                        }
+                    }
+                }
+                return true;
+            }
+        }
     }
 
     //Linked List using Generics

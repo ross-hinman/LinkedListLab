@@ -46,7 +46,7 @@ namespace LinkedList
                 Console.Write($"After adding {student}: ");
                 genericLinkedList.PrintAllNodes();
             }
-
+            
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
             Console.WriteLine();
