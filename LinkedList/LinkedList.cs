@@ -58,56 +58,97 @@ namespace LinkedList
         public bool RemoveAt(int index)
         {
 
-            if (Head == null)
+            if (index == 0)
             {
-                return false;
-            }
-            else
-            {
-                var temp1 = Head;
-                for (int i = 0; i<index-2; i++)
-                {
-                    temp1 = temp1.Next;
-                    Node temp2 = temp1.Next;
-                    temp1.Next = temp2.Next;
-                }
+                Head.Next = Head.Next.Next;
+                --Count;
                 return true;
             }
+            if (index > 0 && index <= Count)
+            {
+                Node current = Head;
+                for (int i = 0; i < index; i++)
+                {
+                    current = current.Next;
+                    if (i==(index-1) || index ==0)
+                    {
+                        current.Next = current.Next.Next;
+                        ++Count;
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public void PrintReverse()
         {
-            PrintReverse();
+            Node current = Head;
+            Console.Write("Null ->");
+            int i = 0;
+            while (i<=Count)
+            {
+                for (int j = 0; j<Count; j++)
+                {
+                    if(current.Next !=null)
+                    {
+                        current = current.Next;
+                    }
+                    if (j==(Count-(i+1)))
+                    {
+                        Console.Write(current.Value);
+                        Console.Write("->");
+                    }
+                }
+                current = Head;
+                i++;
+            }
+            Console.Write("Head");
+            Console.WriteLine();
         }
 
-        public bool InsertAt(int index, Object o)
+        public bool InsertAt(int index, object o)
         {
-            if (Head == null)
+            var newNode = new Node()
             {
-                return false;
+                Value = o
+            };
+            if (index == 0)
+            {
+                newNode.Next = Head.Next;
+                Head.Next = newNode;
+                Count++;
+                return true;
             }
-            else
+            if (index > 0 && index <= Count)
             {
-                Current = Head;
-                var temp1 = Head;
-                if (index > 0 && index <= Count + 1)
+                int Count1 = Count;
+                Node current = Head;
+                for (int i = 0; i <= index; i++)
                 {
-                    int x = 0;
-                    while (Current != null)
+                    current = current.Next;
+                    if (i == index)
                     {
-                        if (x == index)
+                        newNode.Next = current;
+                        Count++;
+                        Console.WriteLine("New Person");
+                        
+                    }
+                }
+                if (Count > Count1)
+                {
+                    current = Head;
+                    for (int x = 0; x < index; x++)
+                    {
+                        current = current.Next;
+                        if (x==(index-1))
                         {
-                            temp1 = Current;
-                            Current = new Node();
-                            Current.Next = temp1;
-                        }
-                        else
-                        {
-                            Current = Current.Next;
+                            current.Next = newNode;
+                            
                         }
                     }
                 }
-                return true;
+                return false;
             }
         }
     }
